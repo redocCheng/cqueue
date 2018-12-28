@@ -31,5 +31,9 @@ queue_init_static(&queue_event,queue_event_buf,QUEUE_BUF_SIZE);  //初始化
 ```
 
 ### 2、使用
-[main.c](https://github.com/redocCheng/cqueue/tree/master/demo) 简单介绍了实际中的一些使用方法
+```
+
+[main.c](https://github.com/redocCheng/cqueue/tree/master/demo/main.c) 简单介绍了实际中的一些使用方法
+
+```
 
