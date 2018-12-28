@@ -17,8 +17,8 @@
 
 /* types ------------------------------------------------------------*/
 /* define -----------------------------------------------------------*/
-#define QUEUE_EVENT_BUF_SIZE 	256
-#define QUEUE_UART_BUF_SIZE		512
+#define QUEUE_EVENT_BUF_SIZE    256
+#define QUEUE_UART_BUF_SIZE     512
 
 /* variables --------------------------------------------------------*/
 queue_t queue_event;                               	
@@ -93,7 +93,7 @@ void main(void)
 	
 	while(1)
 	{
-		uart_send_process();
+        uart_send_process();
 	}
 
 }
