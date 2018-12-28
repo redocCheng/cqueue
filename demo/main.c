@@ -43,20 +43,22 @@ void demo_event_change(uint8_t event)
 uint8_t demo_event_check(void)
 {
     uint8_t event;
-    
+    	
     if(false == queue_get(&queue_event,(uint8_t *)&event))
     {
         event = EVENT_NULL;
     }
 
-    return event;
+	return event;
 }
 
 uint8_t uart1_send(const uint8_t* buf,uint16_t len)
 {
     if( !buf || len <1 )
+    {
         return false;
- 
+    }
+        
     queue_put_length(&queue_uart1_tx,(uint8_t *)buf,len);
     
     return true;
@@ -64,36 +66,36 @@ uint8_t uart1_send(const uint8_t* buf,uint16_t len)
 
 void uart_send_process(void)
 {
-	uint8_t msg_buf[128];
-	uint8_t len;
+    uint8_t msg_buf[128];
+    uint8_t len;
 	
     if(queue_get_count(&queue_uart1_tx))
     {
-		if(len > 128)
-        {
+        if(len > 128)
+	{
             len = 128;
-        }
-		
+	}
+
         queue_peek_length(&queue_uart1_tx,msg_buf,len);
-		
-		//send it
-        
-        queue_pop_length(&queue_uart1_tx,len);
+
+	//send it
+
+	queue_pop_length(&queue_uart1_tx,len);
     }
 
 }
 
 void main(void)
 {
-	demo_init();
-	
-	demo_event_change(1);
-	uart1_send("hello world!\r\n",sizeof("hello world!\r\n"));
-	printf("the event is:%d\r\n",demo_event_check());
-	
-	while(1)
-	{
-        uart_send_process();
-	}
+    demo_init();
+
+    demo_event_change(1);
+    uart1_send("hello world!\r\n",sizeof("hello world!\r\n"));
+    printf("the event is:%d\r\n",demo_event_check());
+
+    while(1)
+    {
+	uart_send_process();
+    }    
 
 }
