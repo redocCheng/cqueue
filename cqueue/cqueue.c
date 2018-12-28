@@ -27,9 +27,6 @@
   * @{
   */
 
-  
-
-
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private constants ---------------------------------------------------------*/
@@ -42,6 +39,7 @@
   * @defgroup 队列驱动外部函数定义
   * @{
   */
+
 /**
   * @brief    初始化队列
   * @param    *QUEUE：队列对象
@@ -123,17 +121,17 @@ uint16_t queue_get_size(queue_t *queue)
   */
 uint8_t queue_put(queue_t *queue,uint8_t ch)
 {
-      if(!queue_is_full(queue))
-      {
+    if(!queue_is_full(queue))
+    {
         queue->buffer[queue->front]= ch;
         queue->front ++;
         queue->front %= queue->max_size; 
         return true;
-      }
-      else
-      {
+    }
+    else
+    {
         return false;
-      }
+    }
 }
 
 /**
@@ -175,15 +173,17 @@ uint8_t queue_put_length(queue_t *queue,uint8_t *buffer,uint16_t length)
   */
 uint8_t queue_get(queue_t *queue,uint8_t *ch)
 {
-      if (!queue_is_empty(queue))
-      {
+    if (!queue_is_empty(queue))
+    {
         *ch = queue->buffer[queue->rear];
         queue->rear++;
         queue->rear%=queue->max_size;   
         return true;
-      }
-      else
-        return 0;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /**
@@ -196,15 +196,15 @@ uint8_t queue_get(queue_t *queue,uint8_t *ch)
   */
 uint8_t queue_peek(queue_t *queue,uint8_t *ch)
 {
-      if (!queue_is_empty(queue))
-      {
-          *ch = queue->buffer[queue->rear];
-          return true;
-      }
-      else
-      {
-          return false;
-      }
+    if (!queue_is_empty(queue))
+    {
+        *ch = queue->buffer[queue->rear];
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /**
@@ -282,11 +282,11 @@ void queue_pop(queue_t *queue)
   */
 void queue_pop_length(queue_t *queue,uint16_t length)
 {
-      if(!queue_is_empty(queue))
-      {
-          queue->rear+=length;
-          queue->rear%=queue->max_size;   
-      }
+    if(!queue_is_empty(queue))
+    {
+        queue->rear+=length;
+        queue->rear%=queue->max_size;   
+    }
 }
 
 /**
