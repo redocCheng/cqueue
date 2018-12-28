@@ -25,10 +25,8 @@ void queue_pop_all(queue_t *queue);
 uint8_t queue_event_buf[QUEUE_EVENT_BUF_SIZE];      //定义缓冲区
 queue_t queue_event;                                //定义队列句柄
 
-void main(void)
-{
-    queue_init_static(&queue_event,queue_event_buf,QUEUE_BUF_SIZE);
-}
+
+queue_init_static(&queue_event,queue_event_buf,QUEUE_BUF_SIZE);  //初始化
 
 ```
 
