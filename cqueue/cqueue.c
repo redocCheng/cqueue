@@ -1,13 +1,13 @@
 /**
   * @file       cqueue.c
-  * @brief      ¶ÓÁĞÇı¶¯ÎÄ¼ş
+  * @brief      é˜Ÿåˆ—é©±åŠ¨æ–‡ä»¶
   * @author     redoc
   * @version    v1.0
   * @date       2016-08-20
   *
   * @note
   * [2016-08-20] <redoc> (v1.0) 
-  * ³õÊ¼°æ±¾
+  * åˆå§‹ç‰ˆæœ¬
   *
   * @remark
   */
@@ -18,12 +18,12 @@
 #include <stdbool.h>
 
 /**
-  * @addtogroup SYSTEMÇı¶¯
+  * @addtogroup SYSTEMé©±åŠ¨
   * @{
   */
 
 /**
-  * @addtogroup ¶ÓÁĞÇı¶¯
+  * @addtogroup é˜Ÿåˆ—é©±åŠ¨
   * @{
   */
 
@@ -39,14 +39,14 @@
 /* Exported functions --------------------------------------------------------*/
 
 /**
-  * @defgroup ¶ÓÁĞÇı¶¯Íâ²¿º¯Êı¶¨Òå
+  * @defgroup é˜Ÿåˆ—é©±åŠ¨å¤–éƒ¨å‡½æ•°å®šä¹‰
   * @{
   */
 /**
-  * @brief    ³õÊ¼»¯¶ÓÁĞ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    *buffer£º¶ÓÁĞÊı×éÊ×µØÖ·
-  * @param    max_size£º¶ÓÁĞÈİÁ¿
+  * @brief    åˆå§‹åŒ–é˜Ÿåˆ—
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    *bufferï¼šé˜Ÿåˆ—æ•°ç»„é¦–åœ°å€
+  * @param    max_sizeï¼šé˜Ÿåˆ—å®¹é‡
   *
   * @return    void    
   * @remark        
@@ -59,25 +59,29 @@ void queue_init_static(queue_t *queue, uint8_t *buffer, uint16_t max_size)
 }
 
 /**
-  * @brief    ¼ÆËã¶ÓÁĞÊı¾İ¸öÊı
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
+  * @brief    è®¡ç®—é˜Ÿåˆ—æ•°æ®ä¸ªæ•°
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
   *
-  * @return    uint8_t:¶ÓÁĞÊı¾İ¸öÊı    
+  * @return    uint8_t:é˜Ÿåˆ—æ•°æ®ä¸ªæ•°    
   * @remark        
   */
 uint16_t  queue_get_count(queue_t *queue)
 {
     if(queue->front < queue->rear)
+    {
         return queue->front + queue->max_size - queue->rear;
+    }
     else
+    {
         return queue->front - queue->rear;
+    }
 }
 
 /**
-  * @brief    ¼ì²â¶ÓÁĞÂú
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
+  * @brief    æ£€æµ‹é˜Ÿåˆ—æ»¡
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
   *
-  * @return    uint8_t:¶ÓÁĞÂú×´Ì¬
+  * @return    uint8_t:é˜Ÿåˆ—æ»¡çŠ¶æ€
   * @remark        
   */
 uint8_t queue_is_full(queue_t *queue)
@@ -86,22 +90,22 @@ uint8_t queue_is_full(queue_t *queue)
 };
 
 /**
-  * @brief    ¼ì²â¶ÓÁĞ¿Õ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
+  * @brief    æ£€æµ‹é˜Ÿåˆ—ç©º
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
   *
-  * @return    uint8_t:¶ÓÁĞ¿Õ×´Ì¬
+  * @return    uint8_t:é˜Ÿåˆ—ç©ºçŠ¶æ€
   * @remark        
   */
 uint8_t queue_is_empty(queue_t *queue)
 {
-    return queue_get_count(queue) == 0;
+    return (queue_get_count(queue) == 0);
 };
 
 /**
-  * @brief    »ñÈ¡¶ÓÁĞÈİÁ¿
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
+  * @brief    è·å–é˜Ÿåˆ—å®¹é‡
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
   *
-  * @return    uint16_t:¶ÓÁĞÈİÁ¿
+  * @return    uint16_t:é˜Ÿåˆ—å®¹é‡
   * @remark        
   */
 uint16_t queue_get_size(queue_t *queue)
@@ -110,11 +114,11 @@ uint16_t queue_get_size(queue_t *queue)
 };
 
 /**
-  * @brief    ½«¶ÓÁĞ³ÉÔ±·ÅÈë¶ÓÁĞ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    ch£ºÊı¾İ
+  * @brief    å°†é˜Ÿåˆ—æˆå‘˜æ”¾å…¥é˜Ÿåˆ—
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    chï¼šæ•°æ®
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 uint8_t queue_put(queue_t *queue,uint8_t ch)
@@ -127,21 +131,23 @@ uint8_t queue_put(queue_t *queue,uint8_t ch)
         return true;
       }
       else
+      {
         return false;
+      }
 }
 
 /**
-  * @brief    ½«Ö¸¶¨³¤¶È¶ÓÁĞ³ÉÔ±·ÅÈë¶ÓÁĞ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    *buffer£ºÊı¾İÊ×µØÖ·
-  * @param    length£ºÊı¾İ³¤¶È
+  * @brief    å°†æŒ‡å®šé•¿åº¦é˜Ÿåˆ—æˆå‘˜æ”¾å…¥é˜Ÿåˆ—
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    *bufferï¼šæ•°æ®é¦–åœ°å€
+  * @param    lengthï¼šæ•°æ®é•¿åº¦
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 uint8_t queue_put_length(queue_t *queue,uint8_t *buffer,uint16_t length)
 {
-    int i;
+    uint16_t i;
     
     if(!((queue_get_size(queue)-queue_get_count(queue))<=length))
     {
@@ -154,14 +160,17 @@ uint8_t queue_put_length(queue_t *queue,uint8_t *buffer,uint16_t length)
         return true;
     }
     else
+    {
         return false;
+    }
 }
+
 /**
-  * @brief    ½«¶ÓÁĞ³ÉÔ±È¡³ö¶ÓÁĞ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    ch£ºÊı¾İ
+  * @brief    å°†é˜Ÿåˆ—æˆå‘˜å–å‡ºé˜Ÿåˆ—
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    chï¼šæ•°æ®
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 uint8_t queue_get(queue_t *queue,uint8_t *ch)
@@ -178,58 +187,60 @@ uint8_t queue_get(queue_t *queue,uint8_t *ch)
 }
 
 /**
-  * @brief    ¼ì²éÊı¾İ£¬µ«ÊÇ²»µ¯³öÊı¾İ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    ch£ºÊı¾İ
+  * @brief    æ£€æŸ¥æ•°æ®ï¼Œä½†æ˜¯ä¸å¼¹å‡ºæ•°æ®
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    chï¼šæ•°æ®
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 uint8_t queue_peek(queue_t *queue,uint8_t *ch)
 {
       if (!queue_is_empty(queue))
       {
-        *ch = queue->buffer[queue->rear];
-        return true;
+          *ch = queue->buffer[queue->rear];
+          return true;
       }
       else
-        return false;
+      {
+          return false;
+      }
 }
 
 /**
-  * @brief    ¼ì²éÖ¸¶¨³¤¶ÈÊı¾İ£¬µ«ÊÇ²»µ¯³öÊı¾İ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    *buffer£ºÊı¾İÊ×µØÖ·
-  * @param    length£ºÊı¾İ³¤¶È
+  * @brief    æ£€æŸ¥æŒ‡å®šé•¿åº¦æ•°æ®ï¼Œä½†æ˜¯ä¸å¼¹å‡ºæ•°æ®
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    *bufferï¼šæ•°æ®é¦–åœ°å€
+  * @param    lengthï¼šæ•°æ®é•¿åº¦
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 uint8_t queue_peek_length(queue_t *queue,uint8_t *buffer,uint16_t length)
 {
-    int i;
-    uint8_t     rt = false;
+    uint16_t i;
+    uint8_t  rt = false;
     for (i = 0; i < length; ++i)
     {
         *(buffer++) = queue->buffer[(queue->rear + i) % queue->max_size];
         rt = true;
     }
-
+ 
     return rt;
 }
 
 /**
-  * @brief    ¼ì²éËùÓĞÊı¾İ£¬µ«ÊÇ²»µ¯³öÊı¾İ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    *buffer£ºÊı¾İÊ×µØÖ·
+  * @brief    æ£€æŸ¥æ‰€æœ‰æ•°æ®ï¼Œä½†æ˜¯ä¸å¼¹å‡ºæ•°æ®
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    *bufferï¼šæ•°æ®é¦–åœ°å€
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 uint8_t queue_peek_all(queue_t *queue,uint8_t *buffer)
 {
-    int back_tail;
-    uint8_t     rt = false;
+    uint16_t back_tail;
+    uint8_t  rt = false;
     if( !buffer ) return false;
 
     back_tail = queue->rear;
@@ -246,43 +257,43 @@ uint8_t queue_peek_all(queue_t *queue,uint8_t *buffer)
 }
 
 /**
-  * @brief    POPÒ»¸öÊı¾İ£¬²»Ê¹ÓÃÊı¾İ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
+  * @brief    POPä¸€ä¸ªæ•°æ®ï¼Œä¸ä½¿ç”¨æ•°æ®
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 void queue_pop(queue_t *queue)
 {
-      if (!queue_is_empty(queue))
-      {
+    if(!queue_is_empty(queue))
+    {
         queue->rear++;
         queue->rear%=queue->max_size;   
-      }
+    }
 }
 
 /**
-  * @brief    POPÖ¸¶¨³¤µÄÊı¾İ£¬²»Ê¹ÓÃÊı¾İ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
-  * @param    pos£º³¤¶È
+  * @brief    POPæŒ‡å®šé•¿çš„æ•°æ®ï¼Œä¸ä½¿ç”¨æ•°æ®
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
+  * @param    posï¼šé•¿åº¦
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 void queue_pop_length(queue_t *queue,uint16_t length)
 {
-      if (!queue_is_empty(queue))
+      if(!queue_is_empty(queue))
       {
-        queue->rear+=length;
-        queue->rear%=queue->max_size;   
+          queue->rear+=length;
+          queue->rear%=queue->max_size;   
       }
 }
 
 /**
-  * @brief    POPËùÓĞÊı¾İ£¬²»Ê¹ÓÃÊı¾İ
-  * @param    *QUEUE£º¶ÓÁĞ¶ÔÏó
+  * @brief    POPæ‰€æœ‰æ•°æ®ï¼Œä¸ä½¿ç”¨æ•°æ®
+  * @param    *QUEUEï¼šé˜Ÿåˆ—å¯¹è±¡
   *
-  * @return    uint8_t:ÔËĞĞ×´Ì¬
+  * @return    uint8_t:è¿è¡ŒçŠ¶æ€
   * @remark        
   */
 void queue_pop_all(queue_t *queue)
